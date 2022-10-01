@@ -505,10 +505,15 @@ sub NIBE_NormalizedValue($$) {
 	my ($type, $value) = @_;
 
 	if ($type eq "s8") {
-    return 0 if $value !~ /^(00)?[0-9A-Fa-f]{1,2}$/;
-		my $num = hex($value);
-		return $num >> 7 ? $num - 2 ** 8 : $num;
-
+    if ($value =~ /^[0-9A-Fa-f]{1,2}$/) {
+		  my $num = hex($value);
+		  return $num >> 7 ? $num - 2 ** 8 : $num;
+    } elsif ($value =~ /^[0-9A-Fa-f]{1,4}$/) {
+		  my $num = hex($value);
+		  return $num >> 7 ? $num - 2 ** 16 : $num;
+    } else {
+      return 0;
+    }
 	} elsif ($type eq "s16") {
 		return 0 if $value !~ /^[0-9A-Fa-f]{1,4}$/;
 		my $num = hex($value);
