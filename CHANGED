@@ -1,3 +1,4 @@
+2026-07-26 - Add renovate.json
 2022-10-01 - fix negative numbers as signed 8 bit
 2021-07-21 - rename state "inactive" to "idle"
 2021-07-01 - add state "inactive"
